@@ -9,7 +9,7 @@
     <Copyright>Copyright 2026 © Horațiu Mlendea</Copyright>
     <RepositoryUrl>https://github.com/hmlendea/nucicli.arguments</RepositoryUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageTags>cli parser commandline argparse</PackageTags>
+    <PackageTags>Console Terminal CommandLine CLI Parser ArgParse</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
