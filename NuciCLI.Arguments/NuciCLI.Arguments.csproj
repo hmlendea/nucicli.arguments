@@ -4,7 +4,7 @@
     <RootNamespace>NuciCLI.Arguments</RootNamespace>
     <PackageId>NuciCLI.Arguments</PackageId>
     <Version>1.0.0</Version>
-    <Description>A C# CLI parser inspired by Python's argparse.</Description>
+    <Description>CLI arguments parser inspired by Python's argparse.</Description>
     <Authors>Horațiu Mlendea</Authors>
     <RepositoryUrl>https://github.com/hmlendea/nucicli.arguments</RepositoryUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
