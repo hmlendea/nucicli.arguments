@@ -54,7 +54,7 @@ string age = args.Get<string>("age"); // Uses default value "18"
 Input:
 
 ```text
---name John
+--name John --age 30
 ```
 
 Parsed keys:
