@@ -134,3 +134,15 @@ NuciCLI.Arguments does not collect, process, transmit, or persist any personal d
 ## License
 
 This project is licensed under the `GNU General Public License v3.0` or later. See [LICENSE](./LICENSE) for details.
+
+## 🤝 Contributing
+
+You are welcome to submit any suggestion, feedback, or modification to this project.
+
+When doing so, please:
+- Maintain cross-platform compatibility
+- Preserve the existing public contract unless a breaking change is intentional
+- Submit focused pull requests that conform to the existing code style
+- Maintain your branch synchronised with `master`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
