@@ -115,6 +115,20 @@ NuciCLI.Arguments is a lightweight C# library for parsing command-line arguments
 
 See the [architecture documentation](./ARCHITECTURE.md) for the system context, principal components, runtime flows, ownership boundaries, dependencies, constraints, and extension points.
 
+## 📚 Documentation
+
+Comprehensive documentation is available in the [`docs/`](./docs/) directory:
+
+- [Documentation Index](./docs/INDEX.md) — Master index with navigation
+- [Quick Start](./docs/quick-start.md) — Get started in minutes
+- [API Reference](./docs/api-reference/) — Public API surface
+- [Architecture](./docs/architecture.md) — Component diagram and data flow
+- [Error Handling](./docs/error-handling.md) — Exception taxonomy and patterns
+- [Testing](./docs/testing.md) — Unit and architecture test strategy
+- [Build & Deployment](./docs/build-and-deployment.md) — CI/CD workflows
+- [FAQ](./docs/faq.md) — Common questions
+- [Troubleshooting](./docs/troubleshooting.md) — Issues and fixes
+
 ## 🔒 Security
 
 NuciCLI.Arguments does not handle sensitive data, authentication, or network operations. It parses command-line arguments provided by the consuming application.
