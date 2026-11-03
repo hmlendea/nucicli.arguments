@@ -1,42 +1,38 @@
-[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/fund.html) [![Build Status](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml) [![Latest GitHub release](https://img.shields.io/github/v/release/hmlendea/nucicli.arguments)](https://github.com/hmlendea/nucicli.arguments/releases/latest)
+[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/funding)
+[![Latest Release](https://img.shields.io/github/v/release/hmlendea/nucicli.arguments)](https://github.com/hmlendea/nucicli.arguments/releases/latest)
+[![Build Status](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml)
+[![NuGet](https://img.shields.io/nuget/v/NuciCLI.Arguments)](https://nuget.org/packages/NuciCLI.Arguments)
+[![License](https://img.shields.io/github/license/hmlendea/nucicli.arguments)](https://github.com/hmlendea/nucicli.arguments/blob/master/LICENSE)
 
 # NuciCLI.Arguments
 
-## About
-
 A lightweight C# library for parsing command-line arguments using a familiar, argparse-inspired model.
 
-`NuciCLI.Arguments` helps you:
+## 📑 Table of Contents
 
-- Define expected arguments in one place
+- [Capabilities](#-capabilities)
+- [Usage](#-usage)
+  - [API Overview](#api-overview)
+    - [`ArgumentParser`](#argumentparser)
+    - [`ArgumentsCollection`](#argumentscollection)
+    - [`Argument`](#argument)
+  - [Behaviour Notes](#behaviour-notes)
+- [Installation](#-installation)
+  - [Package Manager Installation](#package-manager-installation)
+- [Architecture](#-architecture)
+- [Security](#-security)
+- [Project Engagement](#-project-engagement)
+- [License](#-license)
+
+## ✨ Capabilities
+
+- Define expected arguments in one place with `AddArgument(...)`
 - Parse `--name value` style input into a strongly accessible collection
-- Validate unknown and missing arguments early
-- Set required/default values without repetitive boilerplate
+- Validate unknown and missing arguments early with clear exceptions
+- Set required and default values without repetitive boilerplate
+- Access parsed values by key or by typed helper (`Get<T>`)
 
-## Features
-
-- Simple API with `AddArgument(...)` and `ParseArgs(...)`
-- `--argument value` parsing flow
-- Required argument enforcement
-- Default value support for optional arguments
-- Unknown argument detection with clear exceptions
-- Parsed value access by key or by typed helper (`Get<T>`)
-
-## Installation
-
-[![Get it from NuGet](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nuget.png)](https://nuget.org/packages/NuciCLI.Arguments)
-
-### .NET CLI
-```bash
-dotnet add package NuciCLI.Arguments
-```
-
-### Package Manager
-```powershell
-Install-Package NuciCLI.Arguments
-```
-
-## Quick Start
+## 🚀 Usage
 
 ```csharp
 using NuciCLI.Arguments;
@@ -62,27 +58,27 @@ Parsed keys:
 - `name` => `"John"`
 - `age` => `"30"`
 
-## API Overview
+### API Overview
 
-### `ArgumentParser`
+#### `ArgumentParser`
 
 - `AddArgument(string name, string help = "", bool required = false, object defaultValue = null)`
-	Registers an accepted CLI argument.
+  Registers an accepted CLI argument.
 - `ParseArgs(string[] args)`
-	Parses command-line tokens and returns an `ArgumentsCollection`.
+  Parses command-line tokens and returns an `ArgumentsCollection`.
 
-### `ArgumentsCollection`
+#### `ArgumentsCollection`
 
 - `args["key"]`
-	Gets or sets a parsed value by key (`object`). Returns `null` when the key does not exist.
+  Gets or sets a parsed value by key (`object`). Returns `null` when the key does not exist.
 - `Has(string key)`
-	Checks whether a key is present.
+  Checks whether a key is present.
 - `Get<T>(string key)`
-	Returns the stored value cast to the target type.
+  Returns the stored value cast to the target type.
 - `IEnumerable<KeyValuePair<string, object>>`
-	Supports iteration over all parsed entries.
+  Supports iteration over all parsed entries.
 
-### `Argument`
+#### `Argument`
 
 Represents registered argument metadata:
 
@@ -91,62 +87,49 @@ Represents registered argument metadata:
 - `IsRequired`
 - `DefaultValue`
 
-## Behaviour Notes
+### Behaviour Notes
 
-- Argument names are defined without leading dashes:
-	register `name`, parse as `--name John`.
+- Argument names are defined without leading dashes: register `name`, parse as `--name John`.
 - Tokens must follow the `--key value` pattern.
 - If an unknown argument is provided, parsing throws `ArgumentException`.
 - If a value is missing for a provided argument, parsing throws `ArgumentNullException`.
-- If a required argument is not provided, parsing throws `ArgumentNullException`.
-- Default values are applied only when an optional argument is missing.
 
-Current parser scope:
+## 📦 Installation
 
-- Does not parse short aliases like `-n`
-- Does not parse `--key=value` syntax
-- Does not infer types automatically
-- Does not support positional arguments
+[![Obtain it from NuGet](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nuget.png)](https://nuget.org/packages/NuciCLI.Arguments)
 
-## Related Packages
+### Package Manager Installation
 
-The NuciCLI ecosystem is split into focused packages:
+```bash
+dotnet add package NuciCLI.Arguments
+```
 
-- [NuciCLI](https://github.com/hmlendea/nucicli) for core console helpers
-- [NuciCLI.Arguments](https://github.com/hmlendea/nucicli.arguments) for command-line argument handling
-- [NuciCLI.Menus](https://github.com/hmlendea/nucicli.menus) for interactive terminal menus
+Or, via the `Package Manager Console`:
+```powershell
+Install-Package NuciCLI.Arguments
+```
 
-## Target Framework
+## 🏗️ Architecture
 
-The current package targets `.NET 10`.
+NuciCLI.Arguments is a lightweight C# library for parsing command-line arguments using a familiar, argparse-inspired model.
 
-## Testing
+See the [architecture documentation](./ARCHITECTURE.md) for the system context, principal components, runtime flows, ownership boundaries, dependencies, constraints, and extension points.
 
-Unit tests are built with NUnit and verify core parser behavior, including:
+## 🔒 Security
 
-- successful parsing of known arguments
-- exception flow for unknown arguments
+NuciCLI.Arguments does not handle sensitive data, authentication, or network operations. It parses command-line arguments provided by the consuming application.
 
-## 🛡️ Privacy and Data
+For information on reporting security vulnerabilities, see [SECURITY.md](./SECURITY.md).
 
-NuciCLI.Arguments does not collect, process, transmit, or persist any personal data, analytics, diagnostics, or telemetry. The library parses command-line arguments provided by the consuming application and returns parsed values via the `ArgumentsCollection` object. All data handling is the responsibility of the consuming application. See [PRIVACY.md](PRIVACY.md) for details.
+## 💝 Project Engagement
 
-## License
+Discovered a problem or have a suggestion? [Open an issue](https://github.com/hmlendea/nucicli.arguments/issues)!
 
-This project is licensed under the `GNU General Public License v3.0` or later. See [LICENSE](./LICENSE) for details.
+If you find this project useful, consider [funding it](https://hmlendea.go.ro/funding) or starring ⭐️ it on GitHub!
 
-## 📜 Code of Conduct
+[![Donate](https://raw.githubusercontent.com/hmlendea/readme-assets/master/donate_generic.png)](https://hmlendea.go.ro/funding)
 
-This project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+## 📄 License
 
-## 🤝 Contributing
-
-You are welcome to submit any suggestion, feedback, or modification to this project.
-
-When doing so, please:
-- Maintain cross-platform compatibility
-- Preserve the existing public contract unless a breaking change is intentional
-- Submit focused pull requests that conform to the existing code style
-- Maintain your branch synchronised with `master`
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+This project is being distributed under the `GNU General Public License v3.0` or later.
+See [LICENSE](./LICENSE) for additional information.
