@@ -127,6 +127,10 @@ Unit tests are built with NUnit and verify core parser behavior, including:
 - successful parsing of known arguments
 - exception flow for unknown arguments
 
+## 🛡️ Privacy and Data
+
+NuciCLI.Arguments does not collect, process, transmit, or persist any personal data, analytics, diagnostics, or telemetry. The library parses command-line arguments provided by the consuming application and returns parsed values via the `ArgumentsCollection` object. All data handling is the responsibility of the consuming application. See [PRIVACY.md](PRIVACY.md) for details.
+
 ## License
 
 This project is licensed under the `GNU General Public License v3.0` or later. See [LICENSE](./LICENSE) for details.
