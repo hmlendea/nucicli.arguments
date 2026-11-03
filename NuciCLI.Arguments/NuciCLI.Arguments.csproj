@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
     <RootNamespace>NuciCLI.Arguments</RootNamespace>
     <PackageId>NuciCLI.Arguments</PackageId>
     <Version>1.0.1</Version>
