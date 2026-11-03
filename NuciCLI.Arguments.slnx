@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="NuciCLI.Arguments/NuciCLI.Arguments.csproj" />
+  <Project Path="NuciCLI.Arguments.ArchitectureTests/NuciCLI.Arguments.ArchitectureTests.csproj" />
+  <Project Path="NuciCLI.Arguments.UnitTests/NuciCLI.Arguments.UnitTests.csproj" />
+</Solution>
