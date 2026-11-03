@@ -4,7 +4,7 @@ This document covers the guidelines and processes for contributing to this proje
 
 ## 📑 Table of Contents
 
-- [🤝 How to Contribute](#-how-to-contribute)
+- [How to Contribute](#-how-to-contribute)
   - [Reporting Issues](#reporting-issues)
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Code Contributions](#code-contributions)
@@ -15,9 +15,9 @@ This document covers the guidelines and processes for contributing to this proje
   - [Code Style](#code-style)
   - [Testing](#testing)
   - [Documentation](#documentation)
-- [📋 Code of Conduct](#-code-of-conduct)
-- [🔒 Security](#-security)
-- [📄 License](#-license)
+- [Code of Conduct](#-code-of-conduct)
+- [Security](#-security)
+- [License](#-license)
 
 ## 🤝 How to Contribute
 
