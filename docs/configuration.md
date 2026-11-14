@@ -69,6 +69,7 @@ Defined in `.github/workflows/`:
 | `dotnet.yml` | Push/PR to master | Build, restore, test |
 | `nuget-release.yml` | GitHub Release published | Pack and publish to NuGet.org |
 | `github-release.yml` | GitHub Release published | Pack and upload to GitHub Release |
+| `security.yml` | Push/PR to master, weekly schedule | CodeQL analysis and vulnerable-package check |
 
 All workflows use `dotnet-version: 10.0.x` on `ubuntu-latest`.
 

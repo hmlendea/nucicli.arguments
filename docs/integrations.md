@@ -34,7 +34,7 @@
 - `dotnet build` / `dotnet test` / `dotnet pack`
 
 ### CI/CD
-- GitHub Actions (3 workflows)
+- GitHub Actions (4 workflows)
 - NuGet.org OIDC publishing
 - GitHub Releases asset upload
 

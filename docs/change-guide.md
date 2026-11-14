@@ -117,6 +117,7 @@
 **dotnet.yml:** CI triggers, build/test commands.
 **nuget-release.yml:** Pack/publish on release.
 **github-release.yml:** Asset upload on release.
+**security.yml:** CodeQL analysis, vulnerable-package check, scan triggers.
 
 **Changes:** Test in fork first. YAML syntax errors break CI.
 
