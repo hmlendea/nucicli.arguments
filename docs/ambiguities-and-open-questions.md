@@ -13,7 +13,7 @@
 **Impact:** New API surface, parsing behavior change.
 
 ### 3. Value type handling
-**Current:** Parsed values stored as strings. Defaults keep original type. `Get<T>` uses `Convert.ChangeType`.
+**Current:** Parsed values stored as strings. Defaults keep original type. `Get<T>` performs a direct cast.
 **Question:** Should parsed values be type-converted at parse time?
 **Impact:** Earlier failure, but requires type info at registration.
 
@@ -66,9 +66,7 @@
 ## Architecture questions
 
 ### 1. `NuciExtensions` dependency
-**Current:** Used only for `EnumerableExt.IsNullOrEmpty(Queue<string>)`.
-**Question:** Replace with inline check to remove dependency?
-**Tradeoff:** Dependency vs code duplication.
+**Resolved:** Removed in 1.0.3. The queue emptiness check is now an inline `remaining.Count == 0`.
 
 ### 2. Target framework
 **Current:** net10.0 only.

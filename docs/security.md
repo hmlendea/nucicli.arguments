@@ -18,7 +18,8 @@ This document complements the root `SECURITY.md` with implementation-specific de
 
 ### Trust boundaries
 - **Consumer ↔ Library:** Consumer controls all input (registration + tokens). Library validates format and registration.
-- **Library ↔ NuciExtensions:** Single call to `EnumerableExt.IsNullOrEmpty()`. No data flow.
+
+There are no other trust boundaries; the library has no runtime dependencies.
 
 ## Security controls
 
@@ -45,8 +46,8 @@ This document complements the root `SECURITY.md` with implementation-specific de
 ## Dependency security
 
 ### Production dependency
-- `NuciExtensions` 6.0.2 — Internal package, source available at https://github.com/hmlendea/nuciextensions
-- Single method used: `EnumerableExt.IsNullOrEmpty(Queue<string>)`
+
+None. The library uses only the .NET 10.0 base class library.
 
 ### Transitive dependencies
 None beyond .NET 10.0 base class library.

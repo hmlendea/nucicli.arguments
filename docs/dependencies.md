@@ -4,11 +4,7 @@
 
 ### Production (runtime)
 
-| Package | Version | Purpose | License |
-|---------|---------|---------|---------|
-| `NuciExtensions` | 6.0.2 | Provides `EnumerableExt.IsNullOrEmpty()` for queue emptiness check | Unknown (internal) |
-
-**Total production dependencies:** 1
+None. The library depends only on the .NET 10.0 base class library.
 
 ### Development (test/build only)
 
@@ -41,8 +37,6 @@ No other internal dependencies. Test projects do not reference each other.
 ```
 NuciCLI.Arguments (production)
     │
-    ├── NuciExtensions (external)
-    │
     ├── NuciCLI.Arguments.UnitTests (test)
     │   ├── Microsoft.NET.Test.Sdk
     │   ├── NUnit
@@ -70,7 +64,7 @@ No automated vulnerability scanning configured in CI. Dependencies updated manua
 
 ## License compatibility
 
-- Production: `NuciExtensions` license unknown (internal package)
+- Production: no third-party runtime dependencies
 - Test: All test packages MIT/Apache-2.0 compatible
 - Project license: GPL-3.0-or-later (copyleft)
 
@@ -79,7 +73,7 @@ GPL-3.0 requires source distribution for derivatives. Test dependencies not dist
 ## Framework dependencies
 
 - **Target:** .NET 10.0 (`net10.0`)
-- **Runtime:** .NET 10.0 or compatible (netstandard2.0+)
+- **Runtime:** .NET 10.0 or compatible
 - **No native dependencies**
 - **No platform-specific code**
 

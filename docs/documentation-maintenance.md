@@ -6,7 +6,6 @@
 docs/
 ├── INDEX.md                          # Master index (generated last)
 ├── repository-overview.md            # High-level summary
-├── repository-structure.md           # Directory/file map
 ├── architecture.md                   # Architecture overview
 ├── data-model.md                     # Data structures
 ├── components/

@@ -13,8 +13,8 @@ using NuciCLI.Arguments;
 
 var parser = new ArgumentParser();
 
-parser.AddArgument(new Argument("name", "Your name", isRequired: true));
-parser.AddArgument(new Argument("age", "Your age", isRequired: false, defaultValue: "25"));
+parser.AddArgument("name", "Your name", required: true);
+parser.AddArgument("age", "Your age", required: false, defaultValue: "25");
 
 ArgumentsCollection args = parser.ParseArgs(new[] { "--name", "Alice", "--age", "30" });
 
@@ -31,18 +31,16 @@ int age = args.Get<int>("age");          // 30
 
 2. **Register arguments**
    ```csharp
-   parser.AddArgument(new Argument(
+   parser.AddArgument(
        name: "output",
-       description: "Output file path",
-       isRequired: true
-   ));
+       help: "Output file path",
+       required: true);
 
-   parser.AddArgument(new Argument(
+   parser.AddArgument(
        name: "verbose",
-       description: "Enable verbose output",
-       isRequired: false,
-       defaultValue: "false"
-   ));
+       help: "Enable verbose output",
+       required: false,
+       defaultValue: "false");
    ```
 
 3. **Parse command line**
@@ -65,10 +63,10 @@ using NuciCLI.Arguments;
 
 var parser = new ArgumentParser();
 
-parser.AddArgument(new Argument("input", "Input file", isRequired: true));
-parser.AddArgument(new Argument("output", "Output file", isRequired: true));
-parser.AddArgument(new Argument("format", "Output format", isRequired: false, defaultValue: "json"));
-parser.AddArgument(new Argument("compress", "Compress output", isRequired: false, defaultValue: "false"));
+parser.AddArgument("input", "Input file", required: true);
+parser.AddArgument("output", "Output file", required: true);
+parser.AddArgument("format", "Output format", required: false, defaultValue: "json");
+parser.AddArgument("compress", "Compress output", required: false, defaultValue: "false");
 
 try
 {

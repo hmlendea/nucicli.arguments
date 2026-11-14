@@ -7,7 +7,7 @@
     <IsPackable>true</IsPackable>
     <RootNamespace>NuciCLI.Arguments</RootNamespace>
     <PackageId>NuciCLI.Arguments</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Description>CLI arguments parser inspired by Python's argparse.</Description>
     <Authors>Horațiu Mlendea</Authors>
     <Copyright>Copyright 2026 © Horațiu Mlendea</Copyright>
@@ -15,8 +15,4 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageTags>Console Terminal CommandLine CLI Parser ArgParse</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NuciExtensions" Version="6.0.2" />
-  </ItemGroup>
 </Project>

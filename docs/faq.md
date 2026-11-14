@@ -41,7 +41,7 @@ A: Yes. `--Name` and `--name` are different.
 
 **Q: How do I register an argument?**
 ```csharp
-parser.AddArgument(new Argument("name", "Description", isRequired: true));
+parser.AddArgument("name", "Description", required: true);
 ```
 
 **Q: How do I parse?**

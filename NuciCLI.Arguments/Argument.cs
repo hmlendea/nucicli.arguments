@@ -7,7 +7,7 @@ namespace NuciCLI.Arguments
     /// <param name="help">A brief description of the argument's purpose.</param>
     /// <param name="isRequired">Indicates whether the argument is required.</param>
     /// <param name="defaultValue">The default value for the argument if it is not provided.</param>
-    public class Argument(string name, string help, bool isRequired, object defaultValue = null)
+    public class Argument(string name, string help, bool isRequired, object? defaultValue = null)
     {
         /// <summary>
         /// The name of the argument.
@@ -27,6 +27,6 @@ namespace NuciCLI.Arguments
         /// <summary>
         /// The default value for the argument if it is not provided.
         /// </summary>
-        public object DefaultValue { get; } = defaultValue;
+        public object? DefaultValue { get; } = defaultValue;
     }
 }

@@ -68,10 +68,10 @@ This document complements the root `ARCHITECTURE.md` with deeper implementation 
 
 **Location:** `NuciCLI.Arguments/ArgumentsCollection.cs`
 
-**Internal storage:** `Dictionary<string, object> _values`
+**Internal storage:** `Dictionary<string, object?> values`
 
 **Public API:**
-- `this[string key]` — Get/set as `object` (returns null if missing)
+- `this[string key]` — Get/set as `object?` (returns null if missing)
 - `Has(string key)` — Existence check
 - `Get<T>(string key)` — Typed retrieval (casts, throws `KeyNotFoundException` if missing)
 - `GetEnumerator()` — `IEnumerable<KeyValuePair<string, object>>` iteration
@@ -117,8 +117,4 @@ Consumers extend by wrapping or post-processing `ArgumentsCollection`.
 
 ## External dependencies
 
-| Dependency | Purpose | Version |
-|------------|---------|---------|
-| `NuciExtensions` | `EnumerableExt.IsNullOrEmpty()` for queue check | 6.0.2 |
-
-No other runtime dependencies. Test dependencies (NUnit, ArchUnitNET, Roslyn) are dev-only.
+No runtime dependencies. Test dependencies (NUnit, ArchUnitNET, Roslyn) are dev-only.

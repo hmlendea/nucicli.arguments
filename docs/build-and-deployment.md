@@ -110,7 +110,6 @@ No staging/production deployment — library is consumed via NuGet.
 ### Runtime
 
 - .NET 10.0 runtime (or compatible)
-- `NuciExtensions` 6.0.2 (transitive)
 
 ## Rollback
 

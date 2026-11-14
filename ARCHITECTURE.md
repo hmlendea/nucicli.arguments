@@ -30,7 +30,7 @@ Immutable record-like class representing a registered CLI argument definition.
 | `Name` | `string` | Argument name (without `--` prefix) |
 | `Description` | `string` | Help text |
 | `IsRequired` | `bool` | Whether argument must be provided |
-| `DefaultValue` | `object` | Fallback value when omitted |
+| `DefaultValue` | `object?` | Fallback value when omitted |
 
 ### ArgumentParser
 **File:** `NuciCLI.Arguments/ArgumentParser.cs`
@@ -84,7 +84,6 @@ ArgumentsCollection
 
 ## Dependencies
 
-- **NuciExtensions** — Provides `EnumerableExt.IsNullOrEmpty()` used in `ArgumentParser`
 - **NUnit** — Test framework (test project only)
 - **Target Framework:** .NET 10.0
 

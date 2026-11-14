@@ -88,7 +88,7 @@ These properties must remain true for the library to function correctly.
 
 ### ArgumentParser
 
-- `arguments` dictionary never null after construction
+- `registeredArguments` dictionary never null after construction
 - `AddArgument` always succeeds (no validation of name/help)
 - `ParseArgs` creates new `ArgumentsCollection` per call (no state reuse)
 
@@ -101,7 +101,7 @@ These properties must remain true for the library to function correctly.
 
 ### ArgumentsCollection
 
-- `_values` dictionary never null after construction
+- `values` dictionary never null after construction
 - Indexer get returns null for missing keys (no exception)
 - `Get<T>` throws for missing keys (no null return)
 - `Has` returns true even for null values

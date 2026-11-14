@@ -77,9 +77,7 @@ All workflows use `dotnet-version: 10.0.x` on `ubuntu-latest`.
 
 ### Production dependencies
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `NuciExtensions` | 6.0.2 | `EnumerableExt.IsNullOrEmpty()` |
+None. The library targets the .NET 10.0 base class library only.
 
 ### Test dependencies
 

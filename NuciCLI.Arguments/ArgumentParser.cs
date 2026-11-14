@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-using NuciExtensions;
-
 namespace NuciCLI.Arguments
 {
     /// <summary>
@@ -10,7 +8,9 @@ namespace NuciCLI.Arguments
     /// </summary>
     public class ArgumentParser
     {
-        private readonly Dictionary<string, Argument> arguments = [];
+        private static string ArgumentPrefix => "--";
+
+        private readonly Dictionary<string, Argument> registeredArguments = [];
 
         /// <summary>
         /// Adds an argument to the parser.
@@ -19,46 +19,56 @@ namespace NuciCLI.Arguments
         /// <param name="help">A brief description of the argument's purpose.</param>
         /// <param name="required">Indicates whether the argument is required.</param>
         /// <param name="defaultValue">The default value for the argument if it is not provided.</param>
-        public void AddArgument(string name, string help = "", bool required = false, object defaultValue = null)
-            => arguments[name] = new Argument(name, help, required, defaultValue);
+        public void AddArgument(string name, string help = "", bool required = false, object? defaultValue = null)
+            => registeredArguments[name] = new Argument(name, help, required, defaultValue);
 
         /// <summary>
-        /// Parses the command line arguments and returns a Namespace containing the parsed values.
+        /// Parses the command line arguments and returns a collection containing the parsed values.
         /// </summary>
         /// <param name="args">The command line arguments to parse.</param>
-        /// <returns>A Namespace containing the parsed arguments.</returns>
+        /// <returns>A collection containing the parsed arguments.</returns>
         /// <exception cref="ArgumentException">Thrown when an argument is invalid or unknown.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a required argument is missing.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a required argument is missing or an argument has no value.</exception>
         public ArgumentsCollection ParseArgs(string[] args)
         {
             ArgumentsCollection parsed = new();
-            Queue<string> remaining = new(args);
 
+            ConsumeTokens(new Queue<string>(args), parsed);
+            ApplyDefaults(parsed);
+
+            return parsed;
+        }
+
+        private void ConsumeTokens(Queue<string> remaining, ArgumentsCollection parsed)
+        {
             while (remaining.Count > 0)
             {
-                var current = remaining.Dequeue();
+                string current = remaining.Dequeue();
 
-                if (!current.StartsWith("--"))
+                if (!current.StartsWith(ArgumentPrefix, StringComparison.Ordinal))
                 {
                     throw new ArgumentException($"Invalid argument format: {current}");
                 }
 
-                var argName = current[2..];
+                string argumentName = current[ArgumentPrefix.Length..];
 
-                if (!arguments.ContainsKey(argName))
+                if (!registeredArguments.ContainsKey(argumentName))
                 {
-                    throw new ArgumentException($"Unknown argument: {argName}");
+                    throw new ArgumentException($"Unknown argument: {argumentName}");
                 }
 
-                if (EnumerableExt.IsNullOrEmpty(remaining))
+                if (remaining.Count == 0)
                 {
-                    throw new ArgumentNullException(argName);
+                    throw new ArgumentNullException(argumentName);
                 }
 
-                parsed[argName] = remaining.Dequeue();
+                parsed[argumentName] = remaining.Dequeue();
             }
+        }
 
-            foreach (Argument argument in arguments.Values)
+        private void ApplyDefaults(ArgumentsCollection parsed)
+        {
+            foreach (Argument argument in registeredArguments.Values)
             {
                 if (parsed.Has(argument.Name))
                 {
@@ -72,8 +82,6 @@ namespace NuciCLI.Arguments
 
                 parsed[argument.Name] = argument.DefaultValue;
             }
-
-            return parsed;
         }
     }
 }

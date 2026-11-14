@@ -7,9 +7,7 @@
 ## NuGet dependencies
 
 ### Production
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `NuciExtensions` | 6.0.2 | `EnumerableExt.IsNullOrEmpty()` |
+None.
 
 ### Development
 | Package | Version | Purpose |

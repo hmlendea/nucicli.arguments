@@ -9,9 +9,9 @@ All public types are in the `NuciCLI.Arguments` namespace.
 ### ArgumentParser
 
 ```csharp
-public sealed class ArgumentParser
+public class ArgumentParser
 {
-    public void AddArgument(Argument argument);
+    public void AddArgument(string name, string help = "", bool required = false, object? defaultValue = null);
     public ArgumentsCollection ParseArgs(string[] args);
 }
 ```
@@ -19,25 +19,25 @@ public sealed class ArgumentParser
 ### Argument
 
 ```csharp
-public sealed class Argument
+public class Argument
 {
-    public Argument(string name, string description = "", bool isRequired = false, object? defaultValue = null);
-    public string Name { get; init; }
-    public string Description { get; init; }
-    public bool IsRequired { get; init; }
-    public object? DefaultValue { get; init; }
+    public Argument(string name, string help, bool isRequired, object? defaultValue = null);
+    public string Name { get; }
+    public string Description { get; }
+    public bool IsRequired { get; }
+    public object? DefaultValue { get; }
 }
 ```
 
 ### ArgumentsCollection
 
 ```csharp
-public sealed class ArgumentsCollection : IEnumerable<KeyValuePair<string, object>>
+public class ArgumentsCollection : IEnumerable<KeyValuePair<string, object?>>
 {
     public object? this[string key] { get; set; }
     public bool Has(string key);
     public T Get<T>(string key);
-    public IEnumerator<KeyValuePair<string, object>> GetEnumerator();
+    public IEnumerator<KeyValuePair<string, object?>> GetEnumerator();
 }
 ```
 
