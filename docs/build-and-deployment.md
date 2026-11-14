@@ -29,6 +29,23 @@ dotnet test --no-build --verbosity normal
 
 **No deployment** in this workflow — only validation.
 
+### Security scanning (`.github/workflows/security.yml`)
+
+**Triggers:** Push or PR to `master`, and a weekly schedule (`0 0 * * 0`)
+
+**Permissions:** `security-events: write`, `contents: read`
+
+**Steps:**
+1. Checkout (actions/checkout@v7)
+2. Setup .NET 10.0.x (actions/setup-dotnet@v5)
+3. Restore dependencies (`dotnet restore`)
+4. Check for vulnerable packages (`dotnet list package --vulnerable --include-transitive`)
+5. Initialise CodeQL (github/codeql-action/init@v4) for `csharp`
+6. Build (`dotnet build --no-restore`)
+7. Run CodeQL analysis (github/codeql-action/analyze@v4) and upload SARIF results
+
+**No deployment** in this workflow — scanning requires the repository to be public, because GitHub Code Scanning is unavailable on private repositories.
+
 ## Release pipeline
 
 Two workflows triggered on **GitHub Release published**:
@@ -106,5 +123,6 @@ No automated rollback — manual process.
 
 - NuGet publish uses OIDC token (no API key stored in repo)
 - GitHub Release uses `GITHUB_TOKEN` (scoped to repo)
+- Security scanning uses CodeQL and a vulnerable-package check, both requiring no stored secrets beyond `GITHUB_TOKEN`
 - No secrets in workflow files
 - Dependency versions pinned in `.csproj`

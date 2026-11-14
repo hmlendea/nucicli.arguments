@@ -65,6 +65,14 @@ Per root `SECURITY.md`:
 3. **Handle exceptions** — Catch `ArgumentException` and `ArgumentNullException` to avoid crashes
 4. **No secrets in arguments** — Don't pass passwords/tokens as CLI arguments (visible in process list)
 
+## Automated scanning
+
+`.github/workflows/security.yml` runs on pushes and pull requests to `master` and weekly:
+- `dotnet list package --vulnerable --include-transitive` reports vulnerable direct and transitive NuGet packages
+- CodeQL (`github/codeql-action`) analyses the C# source and uploads SARIF results to GitHub Code Scanning
+
+Results appear in the repository **Security** tab and the workflow's **Actions** page. CodeQL requires the repository to be public.
+
 ## Compliance
 
 - No personal data processed (per `PRIVACY.md`)

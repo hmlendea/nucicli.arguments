@@ -91,6 +91,8 @@ dotnet test NuciCLI.Arguments.ArchitectureTests --no-build --verbosity normal
 
 `.github/workflows/dotnet.yml` runs `dotnet test --no-build --verbosity normal` on every push/PR to master.
 
+`.github/workflows/security.yml` also builds the solution on every push/PR to master (and weekly) as part of the CodeQL analysis, but does not execute the test suite.
+
 ## Test data
 
 Uses standard test values from repository conventions:

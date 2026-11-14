@@ -1,6 +1,7 @@
 [![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/funding)
 [![Latest Release](https://img.shields.io/github/v/release/hmlendea/nucicli.arguments)](https://github.com/hmlendea/nucicli.arguments/releases/latest)
 [![Build Status](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hmlendea/nucicli.arguments/actions/workflows/dotnet.yml)
+[![Security Scan](https://github.com/hmlendea/nucicli.arguments/actions/workflows/security.yml/badge.svg)](https://github.com/hmlendea/nucicli.arguments/actions/workflows/security.yml)
 [![NuGet](https://img.shields.io/nuget/v/NuciCLI.Arguments)](https://nuget.org/packages/NuciCLI.Arguments)
 [![License](https://img.shields.io/github/license/hmlendea/nucicli.arguments)](https://github.com/hmlendea/nucicli.arguments/blob/master/LICENSE)
 
@@ -38,6 +39,7 @@ A lightweight C# library for parsing command-line arguments using a familiar, ar
 - [Contributing](#-contributing)
 - [Code of Conduct](#-code-of-conduct)
 - [Security](#-security)
+- [Support](#-support)
 - [Project Engagement](#-project-engagement)
 - [License](#-license)
 
@@ -156,6 +158,7 @@ Published GitHub Releases trigger package creation. The workflows pack the proje
 | [ .NET ](https://github.com/hmlendea/nucicli.arguments/blob/master/.github/workflows/dotnet.yml) | Build and test validation | Restores dependencies, builds the solution, and runs tests for pushes and pull requests to `master`. |
 | [ GitHub Release ](https://github.com/hmlendea/nucicli.arguments/blob/master/.github/workflows/github-release.yml) | GitHub Release packaging | Packs the NuGet package and uploads it with a SHA256 checksum to the published GitHub Release. |
 | [ NuGet.org Release ](https://github.com/hmlendea/nucicli.arguments/blob/master/.github/workflows/nuget-release.yml) | NuGet.org publication | Packs and publishes the package to NuGet.org using OIDC authentication. |
+| [ Security ](https://github.com/hmlendea/nucicli.arguments/blob/master/.github/workflows/security.yml) | Security scanning | Checks for vulnerable NuGet packages, runs CodeQL analysis for C#, and uploads the results to GitHub Code Scanning on pushes and pull requests to `master` and on a weekly schedule. |
 
 ## 🗂️ Project Structure
 
@@ -221,7 +224,11 @@ See the [Code of Conduct](./CODE_OF_CONDUCT.md) for the standards of conduct exp
 
 NuciCLI.Arguments does not handle sensitive data, authentication, or network operations. It parses command-line arguments provided by the consuming application.
 
-For information on reporting security vulnerabilities, see [SECURITY.md](./SECURITY.md).
+For information on reporting security vulnerabilities, see the [Security Policy](./SECURITY.md).
+
+## 💬 Support
+
+For support, please [open an issue](https://github.com/hmlendea/nucicli.arguments/issues).
 
 ## 💝 Project Engagement
 

@@ -9,7 +9,7 @@
 - **Target:** net10.0
 - **License:** GPL-3.0-or-later
 - **Package:** NuGet.org (`NuciCLI.Arguments`)
-- **CI/CD:** GitHub Actions (build, test, NuGet publish, GitHub Release)
+- **CI/CD:** GitHub Actions (build, test, security scan, NuGet publish, GitHub Release)
 
 ## Root document map
 
