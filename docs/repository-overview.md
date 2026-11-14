@@ -38,7 +38,6 @@ Single-threaded, synchronous, no background tasks, no external I/O. The library 
 
 ## Major integrations
 
-- **NuciExtensions** — Provides `EnumerableExt.IsNullOrEmpty()` for queue emptiness checks
 - **NUnit** — Test framework (test projects only)
 - **ArchUnitNET** — Architecture fitness tests (ArchitectureTests project only)
 - **Microsoft.CodeAnalysis** — Roslyn-based source convention tests (ArchitectureTests project only)

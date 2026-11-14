@@ -13,7 +13,7 @@ Primary parsing facade. Consumers instantiate, register arguments via `AddArgume
 ### AddArgument
 
 ```csharp
-public void AddArgument(string name, string help = "", bool required = false, object defaultValue = null)
+public void AddArgument(string name, string help = "", bool required = false, object? defaultValue = null)
 ```
 
 Registers an argument definition. Overwrites any existing registration with the same `name`.
@@ -24,7 +24,7 @@ Registers an argument definition. Overwrites any existing registration with the 
 - `required` — Whether argument must be provided. Default `false`.
 - `defaultValue` — Fallback when omitted. Default `null`.
 
-**Side effects:** Inserts/updates `arguments[name] = new Argument(name, help, required, defaultValue)`.
+**Side effects:** Inserts/updates `registeredArguments[name] = new Argument(name, help, required, defaultValue)`.
 
 ### ParseArgs
 
@@ -48,7 +48,9 @@ Parses command-line tokens into an `ArgumentsCollection`.
 ### State
 
 ```csharp
-private readonly Dictionary<string, Argument> arguments = [];
+private static string ArgumentPrefix => "--";
+
+private readonly Dictionary<string, Argument> registeredArguments = [];
 ```
 
 Registered definitions, keyed by name (ordinal case-sensitive).
@@ -59,39 +61,49 @@ Registered definitions, keyed by name (ordinal case-sensitive).
 public ArgumentsCollection ParseArgs(string[] args)
 {
     ArgumentsCollection parsed = new();
-    Queue<string> remaining = new(args);
 
+    ConsumeTokens(new Queue<string>(args), parsed);
+    ApplyDefaults(parsed);
+
+    return parsed;
+}
+
+private void ConsumeTokens(Queue<string> remaining, ArgumentsCollection parsed)
+{
     while (remaining.Count > 0)
     {
-        var current = remaining.Dequeue();
+        string current = remaining.Dequeue();
 
         // 1. Validate format
-        if (!current.StartsWith("--"))
+        if (!current.StartsWith(ArgumentPrefix, StringComparison.Ordinal))
         {
             throw new ArgumentException($"Invalid argument format: {current}");
         }
 
         // 2. Extract name
-        var argName = current[2..];
+        string argumentName = current[ArgumentPrefix.Length..];
 
         // 3. Look up registration
-        if (!arguments.ContainsKey(argName))
+        if (!registeredArguments.ContainsKey(argumentName))
         {
-            throw new ArgumentException($"Unknown argument: {argName}");
+            throw new ArgumentException($"Unknown argument: {argumentName}");
         }
 
         // 4. Ensure value token exists
-        if (EnumerableExt.IsNullOrEmpty(remaining))
+        if (remaining.Count == 0)
         {
-            throw new ArgumentNullException(argName);
+            throw new ArgumentNullException(argumentName);
         }
 
         // 5. Consume and store value
-        parsed[argName] = remaining.Dequeue();
+        parsed[argumentName] = remaining.Dequeue();
     }
+}
 
+private void ApplyDefaults(ArgumentsCollection parsed)
+{
     // 6. Apply defaults for missing arguments
-    foreach (Argument argument in arguments.Values)
+    foreach (Argument argument in registeredArguments.Values)
     {
         if (parsed.Has(argument.Name))
         {
@@ -105,8 +117,6 @@ public ArgumentsCollection ParseArgs(string[] args)
 
         parsed[argument.Name] = argument.DefaultValue;
     }
-
-    return parsed;
 }
 ```
 
@@ -136,9 +146,10 @@ Defaults applied after all tokens consumed, iterating `arguments.Values` (regist
 
 ## Dependencies
 
-- `NuciExtensions.EnumerableExt.IsNullOrEmpty()` — Checks `Queue<string>` emptiness
 - `System.Collections.Generic.Queue<T>` — Token consumption
 - `System.Collections.Generic.Dictionary<TKey, TValue>` — Registration storage
+
+No external runtime dependencies.
 
 ## Thread safety
 

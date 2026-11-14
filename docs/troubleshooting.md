@@ -31,7 +31,7 @@
 **Cause:** .NET 10.0 SDK not installed.
 **Fix:** Install .NET 10.0 SDK from https://dotnet.microsoft.com.
 
-### "Package NuciExtensions 6.0.2 not found"
+### "Package NuciCLI.Arguments not found"
 **Cause:** NuGet source missing or package not published.
 **Fix:** Ensure nuget.org source enabled. Package is public.
 

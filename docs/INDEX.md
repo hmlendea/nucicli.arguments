@@ -30,7 +30,6 @@
 | File | Description |
 |------|-------------|
 | [repository-overview.md](repository-overview.md) | High-level summary, purpose, scope |
-| [repository-structure.md](repository-structure.md) | Directory/file map with descriptions |
 | [architecture.md](architecture.md) | Component diagram, layers, data flow |
 | [data-model.md](data-model.md) | Class definitions, relationships, serialization |
 | [invariants.md](invariants.md) | System-wide and component invariants |
@@ -53,7 +52,7 @@
 | [configuration.md](configuration.md) | Build config, csproj, solution, nullable/implicit usings |
 | [testing.md](testing.md) | Unit tests (NUnit), architecture tests (ArchUnitNET, Roslyn) |
 | [build-and-deployment.md](build-and-deployment.md) | CI/CD workflows, NuGet publish, GitHub Releases |
-| [dependencies.md](dependencies.md) | Production (NuciExtensions) and dev dependencies |
+| [dependencies.md](dependencies.md) | Test dependencies and framework requirements |
 
 ### Design
 | File | Description |

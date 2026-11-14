@@ -15,11 +15,11 @@
 | `Name` | `string` | No | Argument name without `--` prefix. Used as dictionary key. |
 | `Description` | `string` | No | Help text for documentation. Empty string by default. |
 | `IsRequired` | `bool` | No | Whether the argument must be provided. Default `false`. |
-| `DefaultValue` | `object` | Yes | Fallback value when argument omitted. Default `null`. |
+| `DefaultValue` | `object?` | Yes | Fallback value when argument omitted. Default `null`. |
 
 **Equality:** Reference equality only (class, no `IEquatable<T>`). Two `Argument` instances with same name are not equal.
 
-**Construction:** Primary constructor `Argument(string name, string help, bool isRequired, object defaultValue = null)`. All properties init-only.
+**Construction:** Primary constructor `Argument(string name, string help, bool isRequired, object? defaultValue = null)`. All properties are get-only.
 
 **Usage:** Created internally by `ArgumentParser.AddArgument()`. Not intended for direct consumer instantiation.
 
@@ -29,23 +29,23 @@
 
 **Purpose:** Container for parsed argument values, keyed by argument name.
 
-**Internal storage:** `Dictionary<string, object> _values` — Keys are argument names (without `--`), values are raw strings from parsing (or default values).
+**Internal storage:** `Dictionary<string, object?> values` — Keys are argument names (without `--`), values are raw strings from parsing (or default values).
 
 **Public members:**
 
 | Member | Signature | Behaviour |
 |--------|-----------|-----------|
-| Indexer (get) | `object this[string key]` | Returns value or `null` if key missing |
-| Indexer (set) | `object this[string key] { set }` | Sets/replaces value |
-| `Has` | `bool Has(string key)` | Returns `_values.ContainsKey(key)` |
-| `Get<T>` | `T Get<T>(string key)` | Returns `(T)_values[key]!` — throws `KeyNotFoundException` if missing |
-| `GetEnumerator` | `IEnumerator<KeyValuePair<string, object>> GetEnumerator()` | Delegates to `_values.GetEnumerator()` |
+| Indexer (get) | `object? this[string key]` | Returns value or `null` if key missing |
+| Indexer (set) | `object? this[string key] { set }` | Sets/replaces value |
+| `Has` | `bool Has(string key)` | Returns `values.ContainsKey(key)` |
+| `Get<T>` | `T Get<T>(string key)` | Returns `(T)values[key]!` — throws `KeyNotFoundException` if missing |
+| `GetEnumerator` | `IEnumerator<KeyValuePair<string, object?>> GetEnumerator()` | Delegates to `values.GetEnumerator()` |
 
 **Mutability:** Collection is mutable after parsing via indexer setter. This enables test scenarios and post-processing.
 
-**Type safety:** No built-in conversion. Values stored as `object` (typically `string`). Caller must know expected type and use `Get<T>()`.
+**Type safety:** No built-in conversion. Values stored as `object?` (typically `string`). Caller must know expected type and use `Get<T>()`.
 
-**Iteration:** Implements `IEnumerable<KeyValuePair<string, object>>` for foreach and LINQ.
+**Iteration:** Implements `IEnumerable<KeyValuePair<string, object?>>` for foreach and LINQ.
 
 ## Relationships
 

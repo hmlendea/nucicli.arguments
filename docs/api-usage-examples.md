@@ -8,8 +8,8 @@ This library is a .NET class library, not an HTTP API. Examples show C# usage pa
 using NuciCLI.Arguments;
 
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("name", "User name", isRequired: true));
-parser.AddArgument(new Argument("count", "Repeat count", isRequired: false, defaultValue: "1"));
+parser.AddArgument("name", "User name", required: true);
+parser.AddArgument("count", "Repeat count", required: false, defaultValue: "1");
 
 ArgumentsCollection args = parser.ParseArgs(new[] { "--name", "Alice", "--count", "3" });
 
@@ -21,7 +21,7 @@ int count = args.Get<int>("count");      // 3
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("input", "Input file", isRequired: true));
+parser.AddArgument("input", "Input file", required: true);
 
 try
 {
@@ -38,7 +38,7 @@ catch (ArgumentNullException ex)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("name", "Name", isRequired: true));
+parser.AddArgument("name", "Name", required: true);
 
 try
 {
@@ -55,7 +55,7 @@ catch (ArgumentException ex)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("name", "Name", isRequired: true));
+parser.AddArgument("name", "Name", required: true);
 
 try
 {
@@ -72,7 +72,7 @@ catch (ArgumentNullException ex)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("verbose", "Verbose mode", isRequired: false, defaultValue: "false"));
+parser.AddArgument("verbose", "Verbose mode", required: false, defaultValue: "false");
 
 ArgumentsCollection args = parser.ParseArgs(Array.Empty<string>());
 
@@ -83,7 +83,7 @@ bool verbose = args.Get<bool>("verbose");  // false (from default)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("optional", "Optional arg", isRequired: false, defaultValue: "default"));
+parser.AddArgument("optional", "Optional arg", required: false, defaultValue: "default");
 
 ArgumentsCollection args = parser.ParseArgs(Array.Empty<string>());
 
@@ -102,9 +102,9 @@ if (!args.Has("missing"))
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("port", "Port number", isRequired: true));
-parser.AddArgument(new Argument("enabled", "Enabled flag", isRequired: false, defaultValue: "true"));
-parser.AddArgument(new Argument("ratio", "Ratio", isRequired: false, defaultValue: "1.5"));
+parser.AddArgument("port", "Port number", required: true);
+parser.AddArgument("enabled", "Enabled flag", required: false, defaultValue: "true");
+parser.AddArgument("ratio", "Ratio", required: false, defaultValue: "1.5");
 
 ArgumentsCollection args = parser.ParseArgs(new[] { "--port", "8080", "--enabled", "false", "--ratio", "2.5" });
 
@@ -117,7 +117,7 @@ double ratio = args.Get<double>("ratio"); // 2.5
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("count", "Count", isRequired: true));
+parser.AddArgument("count", "Count", required: true);
 
 ArgumentsCollection args = parser.ParseArgs(new[] { "--count", "not-a-number" });
 
@@ -135,7 +135,7 @@ catch (InvalidCastException)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("Name", "Name", isRequired: true));
+parser.AddArgument("Name", "Name", required: true);
 
 // This works (exact case match)
 ArgumentsCollection args1 = parser.ParseArgs(new[] { "--Name", "Alice" });
@@ -156,8 +156,8 @@ catch (ArgumentException ex)
 
 ```csharp
 var parser = new ArgumentParser();
-parser.AddArgument(new Argument("a", "A", isRequired: true));
-parser.AddArgument(new Argument("b", "B", isRequired: false, defaultValue: "default"));
+parser.AddArgument("a", "A", required: true);
+parser.AddArgument("b", "B", required: false, defaultValue: "default");
 
 ArgumentsCollection args = parser.ParseArgs(new[] { "--a", "value1" });
 
@@ -178,11 +178,11 @@ using NuciCLI.Arguments;
 
 var parser = new ArgumentParser();
 
-parser.AddArgument(new Argument("input", "Input file path", isRequired: true));
-parser.AddArgument(new Argument("output", "Output file path", isRequired: true));
-parser.AddArgument(new Argument("format", "Output format (json|xml|csv)", isRequired: false, defaultValue: "json"));
-parser.AddArgument(new Argument("pretty", "Pretty print output", isRequired: false, defaultValue: "false"));
-parser.AddArgument(new Argument("threads", "Worker threads", isRequired: false, defaultValue: "4"));
+parser.AddArgument("input", "Input file path", required: true);
+parser.AddArgument("output", "Output file path", required: true);
+parser.AddArgument("format", "Output format (json|xml|csv)", required: false, defaultValue: "json");
+parser.AddArgument("pretty", "Pretty print output", required: false, defaultValue: "false");
+parser.AddArgument("threads", "Worker threads", required: false, defaultValue: "4");
 
 try
 {

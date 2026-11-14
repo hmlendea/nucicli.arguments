@@ -4,7 +4,7 @@
 
 **File:** `NuciCLI.Arguments/ArgumentsCollection.cs`
 **Namespace:** `NuciCLI.Arguments`
-**Type:** `public class ArgumentsCollection : IEnumerable<KeyValuePair<string, object>>`
+**Type:** `public class ArgumentsCollection : IEnumerable<KeyValuePair<string, object?>>`
 
 Dictionary-backed container for parsed argument values. Returned by `ArgumentParser.ParseArgs()`.
 
@@ -13,9 +13,17 @@ Dictionary-backed container for parsed argument values. Returned by `ArgumentPar
 ### Indexer (get)
 
 ```csharp
-public object this[string key]
+public object? this[string key]
 {
-    get => _values.TryGetValue(key, out var value) ? value : null;
+    get
+    {
+        if (!values.ContainsKey(key))
+        {
+            return null;
+        }
+
+        return values[key];
+    }
 }
 ```
 
@@ -24,9 +32,9 @@ Returns value as `object` or `null` if key not present. No exception.
 ### Indexer (set)
 
 ```csharp
-public object this[string key]
+public object? this[string key]
 {
-    set => _values[key] = value;
+    set => values[key] = value;
 }
 ```
 
@@ -35,7 +43,7 @@ Sets or replaces value. Allows post-parse mutation.
 ### Has
 
 ```csharp
-public bool Has(string key) => _values.ContainsKey(key);
+public bool Has(string key) => values.ContainsKey(key);
 ```
 
 Existence check. Returns `true` if key exists (even with `null` value).
@@ -43,7 +51,7 @@ Existence check. Returns `true` if key exists (even with `null` value).
 ### Get<T>
 
 ```csharp
-public T Get<T>(string key) => (T)_values[key]!;
+public T Get<T>(string key) => (T)values[key]!;
 ```
 
 Typed retrieval. Casts stored value to `T`.
@@ -55,8 +63,8 @@ Typed retrieval. Casts stored value to `T`.
 ### GetEnumerator
 
 ```csharp
-public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
-    => _values.GetEnumerator();
+public IEnumerator<KeyValuePair<string, object?>> GetEnumerator()
+    => values.GetEnumerator();
 
 IEnumerator IEnumerable.GetEnumerator()
     => GetEnumerator();
@@ -69,7 +77,7 @@ Enables `foreach` and LINQ over parsed arguments.
 ### Storage
 
 ```csharp
-private readonly Dictionary<string, object> _values = [];
+private readonly Dictionary<string, object?> values = [];
 ```
 
 Keys: argument names (without `--`). Values: raw strings from parsing, or default values (any type).
@@ -98,7 +106,7 @@ No built-in conversion. Consumer must:
 
 ### Iteration order
 
-Follows `Dictionary<string, object>` enumeration order (insertion order in .NET Core 3.0+). Order matches:
+Follows `Dictionary<string, object?>` enumeration order (insertion order in .NET Core 3.0+). Order matches:
 1. Arguments provided in command line (parsed order)
 2. Arguments with defaults applied (registration order)
 
@@ -106,7 +114,7 @@ Follows `Dictionary<string, object>` enumeration order (insertion order in .NET 
 
 - `Has(key)` returns `true` for keys with `null` value
 - Indexer get returns `null` for missing keys AND for keys with `null` value (ambiguous)
-- `Get<T>(key)` throws `KeyNotFoundException` for missing keys; returns `default(T)` for `null` values (cast behavior)
+- `Get<T>(key)` throws `KeyNotFoundException` for missing keys; a `null` value casts to `null` for reference types and throws `NullReferenceException` for non-nullable value types
 
 ## Dependencies
 

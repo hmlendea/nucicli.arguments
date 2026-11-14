@@ -148,7 +148,6 @@ Published GitHub Releases trigger package creation. The workflows pack the proje
 
 | Package | Version | Scope | Purpose |
 |---------|---------|-------|---------|
-| NuciExtensions | 6.0.2 | Runtime | Provides extensions used by the parser. |
 | NUnit | Project-defined | Development | Test framework used by the test projects. |
 
 ## ⚙️ GitHub Actions

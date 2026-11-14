@@ -13,7 +13,7 @@ Immutable argument definition. Created by `ArgumentParser.AddArgument()`, stored
 ### Constructor
 
 ```csharp
-public Argument(string name, string help, bool isRequired, object defaultValue = null)
+public Argument(string name, string help, bool isRequired, object? defaultValue = null)
 ```
 
 Primary constructor with all properties as init-only.
@@ -25,7 +25,7 @@ Primary constructor with all properties as init-only.
 | `Name` | `string` | Argument name without `--` prefix. Dictionary key. |
 | `Description` | `string` | Help text. Empty string by default. |
 | `IsRequired` | `bool` | Whether argument must be provided. Default `false`. |
-| `DefaultValue` | `object` | Fallback when omitted. Default `null`. |
+| `DefaultValue` | `object?` | Fallback when omitted. Default `null`. |
 
 All properties have public getters, no setters (immutable).
 
